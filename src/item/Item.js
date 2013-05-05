@@ -2212,11 +2212,14 @@ var Item = this.Item = Base.extend(Callback, {
 			// color styles with matrices (only gradients so far):
 			var style = this._style,
 				fillColor = style.getFillColor(),
-				strokeColor = style.getStrokeColor();
+				strokeColor = style.getStrokeColor(),
+                fillImage = style.getFillImage();
 			if (fillColor)
 				fillColor.transform(this._matrix);
 			if (strokeColor)
 				strokeColor.transform(this._matrix);
+            if (fillImage)
+                fillImage.transform(this._matrix);
 			this._matrix.reset();
 		}
 		// We always need to call _changed since we're caching bounds on all
@@ -2804,6 +2807,7 @@ var Item = this.Item = Base.extend(Callback, {
 			cap = style.getStrokeCap(),
 			limit = style.getMiterLimit(),
 			fillColor = style.getFillColor(),
+            fillImage = style.getFillImage(),
 			strokeColor = style.getStrokeColor(),
 			dashArray = style.getDashArray(),
 			dashOffset = style.getDashOffset();
@@ -2815,7 +2819,9 @@ var Item = this.Item = Base.extend(Callback, {
 			ctx.lineCap = cap;
 		if (limit)
 			ctx.miterLimit = limit;
-		if (fillColor)
+        if (fillImage)
+            ctx.fillStyle = fillImage.toCanvasStyle(ctx);
+		else if (fillColor)
 			ctx.fillStyle = fillColor.toCanvasStyle(ctx);
 		if (strokeColor) {
 			ctx.strokeStyle = strokeColor.toCanvasStyle(ctx);

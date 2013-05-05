@@ -1820,6 +1820,7 @@ var Path = this.Path = PathItem.extend(/** @lends Path# */{
 			// accessors for merged styles.
 			var style = this._style,
 				fillColor = style.getFillColor(),
+                fillImage = style.getFillImage(),
 				strokeColor = style.getStrokeColor(),
 				dashArray = style.getDashArray(),
 				drawDash = !paper.support.nativeDash && strokeColor
@@ -1827,18 +1828,18 @@ var Path = this.Path = PathItem.extend(/** @lends Path# */{
 
 			// Prepare the canvas path if we have any situation that requires it
 			// to be defined.
-			if (fillColor || strokeColor && !drawDash || param.compound
+			if (fillColor || fillImage || strokeColor && !drawDash || param.compound
 					|| param.clip)
 				drawSegments(ctx, this);
 
 			if (this._closed)
 				ctx.closePath();
 
-			if (!param.clip && !param.compound && (fillColor || strokeColor)) {
+			if (!param.clip && !param.compound && (fillColor || fillImage || strokeColor)) {
 				// If the path is part of a compound path or doesn't have a fill
 				// or stroke, there is no need to continue.
 				this._setStyles(ctx);
-				if (fillColor)
+				if (fillColor || fillImage)
 					ctx.fill();
 				if (strokeColor) {
 					if (drawDash) {

@@ -32,8 +32,9 @@ var Shape = this.Shape = Item.extend(/** @lends Shape# */{
 			width = size.width,
 			height = size.height,
 			fillColor = style.getFillColor(),
+            fillImage = style.getFillImage(),
 			strokeColor = style.getStrokeColor();
-		if (fillColor || strokeColor || param.clip) {
+		if (fillColor || fillImage || strokeColor || param.clip) {
 			ctx.beginPath();
 			switch (this._type) {
 			case 'rect':
@@ -57,9 +58,9 @@ var Shape = this.Shape = Item.extend(/** @lends Shape# */{
 				break;
 			}
 		}
-		if (!param.clip && (fillColor || strokeColor)) {
+		if (!param.clip && (fillColor || fillImage || strokeColor)) {
 			this._setStyles(ctx);
-			if (fillColor)
+			if (fillColor || fillImage)
 				ctx.fill();
 			if (strokeColor)
 				ctx.stroke();

@@ -86,6 +86,7 @@ var paper = new function() {
 /*#*/ include('text/PointText.js');
 
 /*#*/ include('style/Color.js');
+/*#*/ include('style/FillImage.js');
 /*#*/ include('style/Gradient.js');
 /*#*/ include('style/GradientStop.js');
 /*#*/ include('style/Style.js');

@@ -71,6 +71,7 @@ var Style = this.Style = Base.extend(new function() {
 	var defaults = {
 		// path styles
 		fillColor: undefined,
+        fillImage: undefined,
 		strokeColor: undefined,
 		strokeWidth: 1,
 		strokeCap: 'butt',
@@ -406,6 +407,26 @@ var Style = this.Style = Base.extend(new function() {
 	 * // Set the fill color of the circle to RGB red:
 	 * circle.fillColor = new Color(1, 0, 0);
 	 */
+
+    /**
+     * {@grouptitle Fill Style}
+     *
+     * The fill image.
+     *
+     * @name Style#fillImage
+     * @property
+     * @type FillImage
+     *
+     * @example {@paperscript}
+     * // Setting the fill image of a path using the id of a DOM Image:
+     *
+     * // Create a circle shaped path at { x: 80, y: 50 }
+     * // with a radius of 35:
+     * var circle = new Path.Circle(new Point(80, 50), 35);
+     *
+     * // Set the fill image of the circle:
+     * circle.fillImage = new FillImage("tst");
+     */
 
 	/**
 	 * {@grouptitle Character Style}
