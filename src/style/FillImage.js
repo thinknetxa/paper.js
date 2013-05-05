@@ -5,8 +5,9 @@
 var FillImage = this.FillImage = Base.extend(new function() {
 
 }, {
-    initialize: function(src) {
+    initialize: function(src, rotation) {
         this.src = src;
+        this.rotation = rotation === undefined ? 0 : rotation;
     },
     transform: function(matrix) {
 
